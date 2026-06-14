@@ -179,7 +179,10 @@ function iniciarEscaner() {
   document.getElementById('panel-config').style.display = 'none';
   document.getElementById('tabs-modo').style.display = 'flex';
   document.getElementById('historial').style.display = 'block';
-  // Cámara solo se inicia al presionar Iniciar, no antes
+  // Mostrar sección cámara e iniciarla
+  document.getElementById('sec-camara').style.display = 'block';
+  document.getElementById('sec-rut').style.display = 'none';
+  document.getElementById('sec-codigo').style.display = 'none';
   setTimeout(iniciarCamara, 300);
 }
 
@@ -187,7 +190,7 @@ function iniciarEscaner() {
 function setTab(t) {
   ['camara','rut','codigo'].forEach(function(x){
     document.getElementById('tab-'+x).className='tab'+(x===t?' active':'');
-    document.getElementById('sec-'+x).className='seccion'+(x===t?' activa':'');
+    document.getElementById('sec-'+x).style.display=(x===t?'block':'none');
   });
   if(t==='camara') iniciarCamara(); else detenerCamara();
   if(t==='rut')    setTimeout(function(){document.getElementById('rut-buscar').focus();},150);
