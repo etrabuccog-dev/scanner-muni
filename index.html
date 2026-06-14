@@ -179,7 +179,8 @@ function iniciarEscaner() {
   document.getElementById('panel-config').style.display = 'none';
   document.getElementById('tabs-modo').style.display = 'flex';
   document.getElementById('historial').style.display = 'block';
-  iniciarCamara();
+  // Cámara solo se inicia al presionar Iniciar, no antes
+  setTimeout(iniciarCamara, 300);
 }
 
 // ── TABS ─────────────────────────────────────────────────
