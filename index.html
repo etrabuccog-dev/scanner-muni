@@ -294,7 +294,8 @@ function cerrarResultado() {
   document.getElementById('resultado').style.display='none';
   document.getElementById('rut-buscar').value='';
   ultimoToken='';
-  if(document.getElementById('sec-camara').classList.contains('activa')) {
+  var secCamara = document.getElementById('sec-camara');
+  if(secCamara && secCamara.style.display !== 'none') {
     detenerCamara();
     setTimeout(iniciarCamara, 600);
   }
