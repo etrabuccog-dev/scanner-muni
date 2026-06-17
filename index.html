@@ -311,10 +311,16 @@ function agregarHistorial(tipo,nombre,rut) {
 }
 
 function formatRutInput(input) {
-  var v=input.value.replace(/[^0-9kK]/g,'').toUpperCase();
-  if(v.length>10) v=v.slice(0,10);
-  if(v.length>1) v=v.slice(0,-1).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+'-'+v.slice(-1);
-  input.value=v;
+  var raw = input.value.replace(/[^0-9A-Za-z]/g,'').toUpperCase();
+  // Si es solo digitos + K final (estilo RUT chileno), aplicar formato con puntos y guion
+  if (/^[0-9]+[0-9K]$/.test(raw) && raw.length >= 2 && raw.length <= 10) {
+    var v = raw.slice(0,-1).replace(/\B(?=(\d{3})+(?!\d))/g,'.') + '-' + raw.slice(-1);
+    input.value = v;
+  } else {
+    // Pasaporte u otro documento: se deja tal cual, sin formato de puntos
+    if (raw.length > 15) raw = raw.slice(0,15);
+    input.value = raw;
+  }
 }
 
 function reproducirSonido(tipo) {
