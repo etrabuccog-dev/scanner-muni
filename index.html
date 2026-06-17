@@ -312,7 +312,7 @@ function agregarHistorial(tipo,nombre,rut) {
 
 function formatRutInput(input) {
   var v=input.value.replace(/[^0-9kK]/g,'').toUpperCase();
-  if(v.length>9) v=v.slice(0,9);
+  if(v.length>10) v=v.slice(0,10);
   if(v.length>1) v=v.slice(0,-1).replace(/\B(?=(\d{3})+(?!\d))/g,'.')+'-'+v.slice(-1);
   input.value=v;
 }
